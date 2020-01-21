@@ -1,0 +1,68 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="cursoForm" (ngSubmit)="onFormSubmit(cursoForm.value)">
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <input formControlName="Nome" matInput placeholder="Nome do curso">
+                        </mat-form-field>
+                        <mat-error>
+                            <span *ngIf="!cursoForm.get('Nome').value && cursoForm.get('Nome').touched"></span>
+                        </mat-error>
+                    </td>
+                    <td></td>
+                    <td>
+                        <mat-form-field>
+                            <input formControlName="Data" matInput [matDatepicker]="picker" placeholder="Choose a date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        </mat-form-field>
+                        <mat-error>
+                            <span *ngIf="!cursoForm.get('Data').value && cursoForm.get('Data').touched"></span>
+                        </mat-error>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="content-center">
+                        <button type="submit" mat-raised-button color="accent" matTooltip="Clique no botão Enviar"
+                            [disabled]="!cursoForm.valid">Enviar</button>
+
+                        <button type="reset" mat-raised-button color="accent" matTooltip="Clique no botão Resetar"
+                            (click)="resetForm()">Resetar</button>
+                    </td>
+                    <td>
+                        <p *ngIf="dataSaved" style="color:rgb(55, 0, 128);font-size:20px;font-weight:bold"
+                            Class="success" align="left">
+                            {{message}}
+                        </p>
+                    </td>
+                </tr>
+
+                <br><br>
+                <table class="table">
+                    <tr ngclass="btn-primary">
+                        <th class="tbl2">Id</th>
+                        <th class="tbl2">Nome do Curso</th>
+                        <th class="tbl2">Data</th>
+                        <th class="tbl2">Edita</th>
+                        <th class="tbl2">Deleta</th>
+                    </tr>
+                    <tr *ngFor="let curso of allCursos | async">
+                        <td class="tbl2">{{curso.cursoId}}</td>
+                        <td class="tbl2">{{curso.nome}}</td>
+                        <td class="tbl2">{{curso.data}}</td>
+                        <td class="tbl2">
+                            <button type="button" class="btn btn-info" matTooltip="Clique no botão para Editar"
+                                (click)="loadCursoToEdit(curso.cursoId)">Editar</button>
+                        </td>
+                        <td class="tbl2">
+                            <button type="button" class="btn btn-danger" matTooltip="Clique no botão para Deletar"
+                                (click)="deleteCurso(curso.cursoId)">Deletar</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
