@@ -1,4 +1,4 @@
-using curso_priscila.Data;
+using DDD.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 
-namespace curso_priscila
+namespace DDD
 {
     public class Startup
     {

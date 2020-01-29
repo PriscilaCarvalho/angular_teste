@@ -1,57 +1,59 @@
-﻿using DDD.Data;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using DDD.Data;
+using DDD.Models;
 
 namespace DDD.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CursoesController : ControllerBase
+    public class AlunoesController : ControllerBase
     {
         private readonly SchoolContext _context;
 
-        public CursoesController(SchoolContext context)
+        public AlunoesController(SchoolContext context)
         {
             _context = context;
         }
 
-        // GET: api/Cursoes
+        // GET: api/Alunoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Curso>>> GetCurso()
+        public async Task<ActionResult<IEnumerable<Aluno>>> GetAluno()
         {
-            return await _context.Curso.ToListAsync();
+            return await _context.Aluno.ToListAsync();
         }
 
-        // GET: api/Cursoes/5
+        // GET: api/Alunoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Curso>> GetCurso(Guid id)
+        public async Task<ActionResult<Aluno>> GetAluno(Guid id)
         {
-            var curso = await _context.Curso.FindAsync(id);
+            var aluno = await _context.Aluno.FindAsync(id);
 
-            if (curso == null)
+            if (aluno == null)
             {
                 return NotFound();
             }
 
-            return curso;
+            return aluno;
         }
 
-        // PUT: api/Cursoes/5
+        // PUT: api/Alunoes/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCurso(Guid id, Curso curso)
+        public async Task<IActionResult> PutAluno(Guid id, Aluno aluno)
         {
-            if (id != curso.CursoId)
+            if (id != aluno.AlunoId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(curso).State = EntityState.Modified;
+            _context.Entry(aluno).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +61,7 @@ namespace DDD.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CursoExists(id))
+                if (!AlunoExists(id))
                 {
                     return NotFound();
                 }
@@ -72,37 +74,37 @@ namespace DDD.Controllers
             return NoContent();
         }
 
-        // POST: api/Cursoes
+        // POST: api/Alunoes
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Curso>> PostCurso(Curso curso)
+        public async Task<ActionResult<Aluno>> PostAluno(Aluno aluno)
         {
-            _context.Curso.Add(curso);
+            _context.Aluno.Add(aluno);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCurso", new { id = curso.CursoId }, curso);
+            return CreatedAtAction("GetAluno", new { id = aluno.AlunoId }, aluno);
         }
 
-        // DELETE: api/Cursoes/5
+        // DELETE: api/Alunoes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Curso>> DeleteCurso(Guid id)
+        public async Task<ActionResult<Aluno>> DeleteAluno(Guid id)
         {
-            var curso = await _context.Curso.FindAsync(id);
-            if (curso == null)
+            var aluno = await _context.Aluno.FindAsync(id);
+            if (aluno == null)
             {
                 return NotFound();
             }
 
-            _context.Curso.Remove(curso);
+            _context.Aluno.Remove(aluno);
             await _context.SaveChangesAsync();
 
-            return curso;
+            return aluno;
         }
 
-        private bool CursoExists(Guid id)
+        private bool AlunoExists(Guid id)
         {
-            return _context.Curso.Any(e => e.CursoId == id);
+            return _context.Aluno.Any(e => e.AlunoId == id);
         }
     }
 }

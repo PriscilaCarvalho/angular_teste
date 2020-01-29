@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "curso_priscila": {
+    "DDD": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -53,18 +53,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "curso_priscila:build"
+            "browserTarget": "DDD:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "curso_priscila:build:production"
+              "browserTarget": "DDD:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "curso_priscila:build"
+            "browserTarget": "DDD:build"
           }
         },
         "test": {
@@ -124,7 +124,7 @@
         }
       }
     },
-    "curso_priscila-e2e": {
+    "DDD-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -132,7 +132,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "curso_priscila:serve"
+            "devServerTarget": "DDD:serve"
           }
         },
         "lint": {
@@ -147,5 +147,5 @@
       }
     }
   },
-  "defaultProject": "curso_priscila"
+  "defaultProject": "DDD"
 }

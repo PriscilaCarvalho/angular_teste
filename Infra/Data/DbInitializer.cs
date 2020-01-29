@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DDD.Models;
 
 namespace DDD.Data
 {

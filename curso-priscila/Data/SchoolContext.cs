@@ -1,7 +1,6 @@
-﻿using curso_priscila.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace curso_priscila.Data
+namespace DDD.Data
 {
     public class SchoolContext : DbContext
     {
